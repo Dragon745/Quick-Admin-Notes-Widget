@@ -1,8 +1,8 @@
-=== Quick Admin Notes Widget ===
+=== Admin Notes Widget By Website14 ===
 Contributors: website14
-Tags: dashboard, notes, admin, widget, sticky-notes, reminders
+Tags: dashboard, notes, admin, widget, sticky-notes
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.8
 Requires PHP: 7.0
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -12,7 +12,7 @@ A simple dashboard widget that allows users to quickly add sticky notes directly
 
 == Description ==
 
-Quick Admin Notes Widget is a lightweight and user-friendly plugin that adds a sticky notes widget to your WordPress dashboard. Perfect for administrators who need to keep track of important reminders, to-do lists, or quick notes without leaving the admin area.
+Admin Notes Widget By Website14 is a lightweight and user-friendly plugin that adds a sticky notes widget to your WordPress dashboard. Perfect for administrators who need to keep track of important reminders, to-do lists, or quick notes without leaving the admin area.
 
 = Features =
 
@@ -28,7 +28,7 @@ Quick Admin Notes Widget is a lightweight and user-friendly plugin that adds a s
 
 1. Activate the plugin
 2. Navigate to your WordPress dashboard
-3. Find the "Quick Admin Notes" widget
+3. Find the "Admin Notes Widget By Website14" widget
 4. Start adding your notes with rich text formatting
 5. Use the "Send to Admin" feature to share notes with other administrators
 
@@ -45,7 +45,7 @@ Quick Admin Notes Widget is a lightweight and user-friendly plugin that adds a s
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/quick-admin-notes-widget` directory, or install the plugin through the WordPress admin area
+1. Upload the plugin files to the `/wp-content/plugins/admin-notes-widget-by-website14` directory, or install the plugin through the WordPress admin area
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. The widget will automatically appear on your dashboard
 
@@ -81,7 +81,7 @@ The plugin comes with four predefined colors. Custom color options may be added 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of Quick Admin Notes Widget.
+Initial release of Admin Notes Widget By Website14.
 
 == Support ==
 

@@ -1,19 +1,18 @@
 <?php
 /**
- * Plugin Name: Quick Admin Notes Widget
- * Plugin URI: https://wordpress.org/plugins/quick-admin-notes-widget/
+ * Plugin Name: Admin Notes Widget By Website14
+ * Plugin URI: https://wordpress.org/plugins/admin-notes-widget-by-website14/
  * Description: A simple dashboard widget that allows users to quickly add sticky notes directly to their WordPress dashboard for reminders, to-do lists, or quick notes.
  * Version: 1.0.0
  * Requires at least: 5.0
  * Tested up to: 6.4
  * Requires PHP: 7.0
  * Author: Website14
- * Author URI: https://www.website14.com
+ * Author URI: https://website14.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: quick-admin-notes-widget
+ * Text Domain: admin-notes-widget-by-website14
  * Domain Path: /languages
- * Network: false
  */
 
 // Prevent direct access
@@ -26,7 +25,7 @@ define('QANW_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('QANW_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('QANW_VERSION', '1.0.0');
 
-class QuickAdminNotesWidget {
+class AdminNotesWidgetByWebsite14 {
     
     public function __construct() {
         add_action('wp_dashboard_setup', array($this, 'add_dashboard_widget'));
@@ -51,8 +50,9 @@ class QuickAdminNotesWidget {
      */
     public function add_dashboard_widget() {
         wp_add_dashboard_widget(
-            'quick_admin_notes_widget',
-            __('Quick Admin Notes', 'quick-admin-notes-widget'),
+            'admin_notes_widget_by_website14',
+            '<span class="dashicons dashicons-sticky" style="margin-right: 8px; color: #0073aa;"></span>' . 
+            __('Admin Notes Widget By Website14', 'admin-notes-widget-by-website14'),
             array($this, 'dashboard_widget_content')
         );
     }
@@ -63,45 +63,49 @@ class QuickAdminNotesWidget {
     public function dashboard_widget_content() {
         ?>
         <div id="qanw-container">
+            <div id="qanw-notes-list">
+                <!-- Notes will be loaded here via AJAX -->
+            </div>
+            
             <div id="qanw-form">
                 <div class="qanw-editor-toolbar">
-                    <button type="button" class="qanw-format-btn" data-format="bold" title="<?php _e('Bold', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="bold" title="<?php esc_attr_e('Bold', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-bold"></span>
                     </button>
-                    <button type="button" class="qanw-format-btn" data-format="italic" title="<?php _e('Italic', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="italic" title="<?php esc_attr_e('Italic', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-italic"></span>
                     </button>
-                    <button type="button" class="qanw-format-btn" data-format="underline" title="<?php _e('Underline', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="underline" title="<?php esc_attr_e('Underline', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-underline"></span>
                     </button>
                     <span class="qanw-toolbar-separator">|</span>
-                    <button type="button" class="qanw-format-btn" data-format="ul" title="<?php _e('Bullet List', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="ul" title="<?php esc_attr_e('Bullet List', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-ul"></span>
                     </button>
-                    <button type="button" class="qanw-format-btn" data-format="ol" title="<?php _e('Numbered List', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="ol" title="<?php esc_attr_e('Numbered List', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-ol"></span>
                     </button>
                     <span class="qanw-toolbar-separator">|</span>
-                    <button type="button" class="qanw-format-btn" data-format="link" title="<?php _e('Insert Link', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="link" title="<?php esc_attr_e('Insert Link', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-admin-links"></span>
                     </button>
-                    <button type="button" class="qanw-format-btn" data-format="code" title="<?php _e('Code', 'quick-admin-notes-widget'); ?>">
+                    <button type="button" class="qanw-format-btn" data-format="code" title="<?php esc_attr_e('Code', 'admin-notes-widget-by-website14'); ?>">
                         <span class="dashicons dashicons-editor-code"></span>
                     </button>
                 </div>
-                <div id="qanw-editor" contenteditable="true" placeholder="<?php _e('Enter your note here...', 'quick-admin-notes-widget'); ?>"></div>
+                <div id="qanw-editor" contenteditable="true" placeholder="<?php esc_attr_e('Enter your note here...', 'admin-notes-widget-by-website14'); ?>"></div>
                 <div class="qanw-form-controls">
                     <select id="qanw-note-color">
-                        <option value="yellow"><?php _e('Yellow', 'quick-admin-notes-widget'); ?></option>
-                        <option value="blue"><?php _e('Blue', 'quick-admin-notes-widget'); ?></option>
-                        <option value="green"><?php _e('Green', 'quick-admin-notes-widget'); ?></option>
-                        <option value="red"><?php _e('Red', 'quick-admin-notes-widget'); ?></option>
+                        <option value="yellow"><?php esc_html_e('Yellow', 'admin-notes-widget-by-website14'); ?></option>
+                        <option value="blue"><?php esc_html_e('Blue', 'admin-notes-widget-by-website14'); ?></option>
+                        <option value="green"><?php esc_html_e('Green', 'admin-notes-widget-by-website14'); ?></option>
+                        <option value="red"><?php esc_html_e('Red', 'admin-notes-widget-by-website14'); ?></option>
                     </select>
                     <button type="button" id="qanw-add-note" class="button button-primary">
-                        <?php _e('Add Note', 'quick-admin-notes-widget'); ?>
+                        <?php esc_html_e('Add Note', 'admin-notes-widget-by-website14'); ?>
                     </button>
                     <button type="button" id="qanw-send-note" class="button button-secondary">
-                        <?php _e('Send to Admin', 'quick-admin-notes-widget'); ?>
+                        <?php esc_html_e('Send to Admin', 'admin-notes-widget-by-website14'); ?>
                     </button>
                 </div>
                 
@@ -109,29 +113,25 @@ class QuickAdminNotesWidget {
                 <div id="qanw-send-modal" class="qanw-modal" style="display: none;">
                     <div class="qanw-modal-content">
                         <div class="qanw-modal-header">
-                            <h3><?php _e('Send Note to Admin', 'quick-admin-notes-widget'); ?></h3>
+                            <h3><?php esc_html_e('Send Note to Admin', 'admin-notes-widget-by-website14'); ?></h3>
                             <button type="button" class="qanw-modal-close">&times;</button>
                         </div>
                         <div class="qanw-modal-body">
-                            <p><?php _e('Select admin users to send this note to:', 'quick-admin-notes-widget'); ?></p>
+                            <p><?php esc_html_e('Select admin users to send this note to:', 'admin-notes-widget-by-website14'); ?></p>
                             <div id="qanw-admin-users-list">
                                 <!-- Admin users will be loaded here -->
                             </div>
                         </div>
                         <div class="qanw-modal-footer">
                             <button type="button" id="qanw-confirm-send" class="button button-primary">
-                                <?php _e('Send Note', 'quick-admin-notes-widget'); ?>
+                                <?php esc_html_e('Send Note', 'admin-notes-widget-by-website14'); ?>
                             </button>
                             <button type="button" class="qanw-modal-cancel button button-secondary">
-                                <?php _e('Cancel', 'quick-admin-notes-widget'); ?>
+                                <?php esc_html_e('Cancel', 'admin-notes-widget-by-website14'); ?>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div id="qanw-notes-list">
-                <!-- Notes will be loaded here via AJAX -->
             </div>
             
             <!-- Support Section -->
@@ -140,11 +140,11 @@ class QuickAdminNotesWidget {
                 <p style="text-align: center; margin: 20px 0 10px 0;">
                     <a href="https://buymeacoffee.com/contact9rg" target="_blank" class="button button-secondary">
                         <span class="dashicons dashicons-heart" style="color: #e74c3c;"></span>
-                        <?php _e('Buy us a coffee', 'quick-admin-notes-widget'); ?>
+                        <?php esc_html_e('Buy us a coffee', 'admin-notes-widget-by-website14'); ?>
                     </a>
-                    <a href="<?php echo admin_url('admin.php?page=qanw-suggestions'); ?>" class="button button-secondary">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=qanw-suggestions')); ?>" class="button button-secondary">
                         <span class="dashicons dashicons-lightbulb"></span>
-                        <?php _e('Suggest Feature', 'quick-admin-notes-widget'); ?>
+                        <?php esc_html_e('Suggest Feature', 'admin-notes-widget-by-website14'); ?>
                     </a>
                 </p>
             </div>
@@ -159,8 +159,8 @@ class QuickAdminNotesWidget {
     public function add_admin_menu() {
         add_submenu_page(
             null, // No parent menu
-            __('Feature Suggestions', 'quick-admin-notes-widget'),
-            __('Feature Suggestions', 'quick-admin-notes-widget'),
+            __('Feature Suggestions', 'admin-notes-widget-by-website14'),
+            __('Feature Suggestions', 'admin-notes-widget-by-website14'),
             'manage_options',
             'qanw-suggestions',
             array($this, 'suggestions_page')
@@ -173,11 +173,11 @@ class QuickAdminNotesWidget {
     public function suggestions_page() {
         ?>
         <div class="wrap">
-            <h1><?php _e('Feature Suggestions', 'quick-admin-notes-widget'); ?></h1>
+            <h1><?php esc_html_e('Feature Suggestions', 'admin-notes-widget-by-website14'); ?></h1>
             
             <div class="qanw-suggestions-container">
                 <div class="qanw-suggestions-intro">
-                    <p><?php _e('Help us improve the Quick Admin Notes Widget plugin by suggesting new features or improvements. Your feedback is valuable to us!', 'quick-admin-notes-widget'); ?></p>
+                    <p><?php esc_html_e('Help us improve the Admin Notes Widget By Website14 plugin by suggesting new features or improvements. Your feedback is valuable to us!', 'admin-notes-widget-by-website14'); ?></p>
                 </div>
                 
                 <form id="qanw-suggestion-form" method="post">
@@ -186,7 +186,7 @@ class QuickAdminNotesWidget {
                     <table class="form-table">
                         <tr>
                             <th scope="row">
-                                <label for="qanw-suggestion-text"><?php _e('Your Suggestion', 'quick-admin-notes-widget'); ?></label>
+                                <label for="qanw-suggestion-text"><?php esc_html_e('Your Suggestion', 'admin-notes-widget-by-website14'); ?></label>
                             </th>
                             <td>
                                 <textarea 
@@ -195,11 +195,11 @@ class QuickAdminNotesWidget {
                                     rows="8" 
                                     cols="50" 
                                     class="large-text"
-                                    placeholder="<?php _e('Describe your feature suggestion here... For example: "It would be great to have a dark mode option" or "Could you add the ability to export notes?"', 'quick-admin-notes-widget'); ?>"
+                                    placeholder="<?php esc_attr_e('Describe your feature suggestion here... For example: "It would be great to have a dark mode option" or "Could you add the ability to export notes?"', 'admin-notes-widget-by-website14'); ?>"
                                     required
                                 ></textarea>
                                 <p class="description">
-                                    <?php _e('Please be as detailed as possible. Your suggestion will help us improve the plugin for everyone.', 'quick-admin-notes-widget'); ?>
+                                    <?php esc_html_e('Please be as detailed as possible. Your suggestion will help us improve the plugin for everyone.', 'admin-notes-widget-by-website14'); ?>
                                 </p>
                             </td>
                         </tr>
@@ -207,21 +207,21 @@ class QuickAdminNotesWidget {
                     
                     <p class="submit">
                         <button type="submit" class="button button-primary" id="qanw-submit-suggestion">
-                            <?php _e('Submit Suggestion', 'quick-admin-notes-widget'); ?>
+                            <?php esc_html_e('Submit Suggestion', 'admin-notes-widget-by-website14'); ?>
                         </button>
-                        <a href="<?php echo admin_url('index.php'); ?>" class="button button-secondary">
-                            <?php _e('Cancel', 'quick-admin-notes-widget'); ?>
+                        <a href="<?php echo esc_url(admin_url('index.php')); ?>" class="button button-secondary">
+                            <?php esc_html_e('Cancel', 'admin-notes-widget-by-website14'); ?>
                         </a>
                     </p>
                 </form>
                 
                 <div class="qanw-suggestions-info">
-                    <h3><?php _e('What happens next?', 'quick-admin-notes-widget'); ?></h3>
+                    <h3><?php esc_html_e('What happens next?', 'admin-notes-widget-by-website14'); ?></h3>
                     <ul>
-                        <li><?php _e('Your suggestion will be reviewed by our development team', 'quick-admin-notes-widget'); ?></li>
-                        <li><?php _e('We may contact you for more details if needed', 'quick-admin-notes-widget'); ?></li>
-                        <li><?php _e('Popular suggestions may be implemented in future updates', 'quick-admin-notes-widget'); ?></li>
-                        <li><?php _e('You can submit multiple suggestions', 'quick-admin-notes-widget'); ?></li>
+                        <li><?php esc_html_e('Your suggestion will be reviewed by our development team', 'admin-notes-widget-by-website14'); ?></li>
+                        <li><?php esc_html_e('We may contact you for more details if needed', 'admin-notes-widget-by-website14'); ?></li>
+                        <li><?php esc_html_e('Popular suggestions may be implemented in future updates', 'admin-notes-widget-by-website14'); ?></li>
+                        <li><?php esc_html_e('You can submit multiple suggestions', 'admin-notes-widget-by-website14'); ?></li>
                     </ul>
                 </div>
                 
@@ -230,7 +230,7 @@ class QuickAdminNotesWidget {
                     <p style="text-align: center; margin: 20px 0 10px 0;">
                         <a href="https://buymeacoffee.com/contact9rg" target="_blank" class="button button-secondary">
                             <span class="dashicons dashicons-heart" style="color: #e74c3c;"></span>
-                            <?php _e('Buy us a coffee', 'quick-admin-notes-widget'); ?>
+                            <?php esc_html_e('Buy us a coffee', 'admin-notes-widget-by-website14'); ?>
                         </a>
                     </p>
                 </div>
@@ -245,17 +245,17 @@ class QuickAdminNotesWidget {
                 var suggestion = $('#qanw-suggestion-text').val().trim();
                 
                 if (!suggestion) {
-                    alert('<?php _e('Please enter a suggestion.', 'quick-admin-notes-widget'); ?>');
+                    alert('<?php esc_js_e('Please enter a suggestion.', 'admin-notes-widget-by-website14'); ?>');
                     return;
                 }
                 
                 if (suggestion.length > 5000) {
-                    alert('<?php _e('Suggestion is too long. Please keep it under 5000 characters.', 'quick-admin-notes-widget'); ?>');
+                    alert('<?php esc_js_e('Suggestion is too long. Please keep it under 5000 characters.', 'admin-notes-widget-by-website14'); ?>');
                     return;
                 }
                 
                 var submitBtn = $('#qanw-submit-suggestion');
-                submitBtn.prop('disabled', true).text('<?php _e('Submitting...', 'quick-admin-notes-widget'); ?>');
+                submitBtn.prop('disabled', true).text('<?php esc_js_e('Submitting...', 'admin-notes-widget-by-website14'); ?>');
                 
                 $.ajax({
                     url: ajaxurl,
@@ -267,17 +267,17 @@ class QuickAdminNotesWidget {
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert('<?php _e('Thank you for your suggestion! We will review it carefully.', 'quick-admin-notes-widget'); ?>');
-                            window.location.href = '<?php echo admin_url('index.php'); ?>';
+                            alert('<?php esc_js_e('Thank you for your suggestion! We will review it carefully.', 'admin-notes-widget-by-website14'); ?>');
+                            window.location.href = '<?php echo esc_url(admin_url('index.php')); ?>';
                         } else {
-                            alert(response.data || '<?php _e('An error occurred. Please try again.', 'quick-admin-notes-widget'); ?>');
+                            alert(response.data || '<?php esc_js_e('An error occurred. Please try again.', 'admin-notes-widget-by-website14'); ?>');
                         }
                     },
                     error: function() {
-                        alert('<?php _e('An error occurred. Please try again.', 'quick-admin-notes-widget'); ?>');
+                        alert('<?php esc_js_e('An error occurred. Please try again.', 'admin-notes-widget-by-website14'); ?>');
                     },
                     complete: function() {
-                        submitBtn.prop('disabled', false).text('<?php _e('Submit Suggestion', 'quick-admin-notes-widget'); ?>');
+                        submitBtn.prop('disabled', false).text('<?php esc_js_e('Submit Suggestion', 'admin-notes-widget-by-website14'); ?>');
                     }
                 });
             });
@@ -310,13 +310,13 @@ class QuickAdminNotesWidget {
         );
         
         wp_localize_script('qanw-script', 'qanw_ajax', array(
-            'ajax_url' => admin_url('admin-ajax.php'),
+            'ajax_url' => esc_url(admin_url('admin-ajax.php')),
             'nonce' => wp_create_nonce('qanw_nonce'),
             'strings' => array(
-                'confirm_delete' => __('Are you sure you want to delete this note?', 'quick-admin-notes-widget'),
-                'note_added' => __('Note added successfully!', 'quick-admin-notes-widget'),
-                'note_deleted' => __('Note deleted successfully!', 'quick-admin-notes-widget'),
-                'error' => __('An error occurred. Please try again.', 'quick-admin-notes-widget')
+                'confirm_delete' => esc_html__('Are you sure you want to delete this note?', 'admin-notes-widget-by-website14'),
+                'note_added' => esc_html__('Note added successfully!', 'admin-notes-widget-by-website14'),
+                'note_deleted' => esc_html__('Note deleted successfully!', 'admin-notes-widget-by-website14'),
+                'error' => esc_html__('An error occurred. Please try again.', 'admin-notes-widget-by-website14')
             )
         ));
     }
@@ -328,7 +328,7 @@ class QuickAdminNotesWidget {
         check_ajax_referer('qanw_nonce', 'nonce');
         
         if (!current_user_can('read')) {
-            wp_die(__('You do not have permission to perform this action.', 'quick-admin-notes-widget'));
+            wp_die(esc_html__('You do not have permission to perform this action.', 'admin-notes-widget-by-website14'));
         }
         
         $note_text = wp_kses($_POST['note_text'], array(
@@ -353,7 +353,7 @@ class QuickAdminNotesWidget {
         $note_color = sanitize_text_field($_POST['note_color']);
         
         if (empty($note_text)) {
-            wp_send_json_error(__('Note text cannot be empty.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Note text cannot be empty.', 'admin-notes-widget-by-website14'));
         }
         
         $allowed_colors = array('yellow', 'blue', 'green', 'red');
@@ -374,7 +374,7 @@ class QuickAdminNotesWidget {
         $this->save_notes_data($notes);
         
         wp_send_json_success(array(
-            'message' => __('Note added successfully!', 'quick-admin-notes-widget'),
+            'message' => esc_html__('Note added successfully!', 'admin-notes-widget-by-website14'),
             'note' => $new_note
         ));
     }
@@ -386,13 +386,13 @@ class QuickAdminNotesWidget {
         check_ajax_referer('qanw_nonce', 'nonce');
         
         if (!current_user_can('read')) {
-            wp_die(__('You do not have permission to perform this action.', 'quick-admin-notes-widget'));
+            wp_die(esc_html__('You do not have permission to perform this action.', 'admin-notes-widget-by-website14'));
         }
         
         $note_id = sanitize_text_field($_POST['note_id']);
         
         if (empty($note_id)) {
-            wp_send_json_error(__('Note ID is required.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Note ID is required.', 'admin-notes-widget-by-website14'));
         }
         
         $notes = $this->get_notes_data();
@@ -403,11 +403,11 @@ class QuickAdminNotesWidget {
             if ($note['id'] === $note_id && $note['user_id'] == $user_id) {
                 unset($notes[$key]);
                 $this->save_notes_data(array_values($notes));
-                wp_send_json_success(__('Note deleted successfully!', 'quick-admin-notes-widget'));
+                wp_send_json_success(esc_html__('Note deleted successfully!', 'admin-notes-widget-by-website14'));
             }
         }
         
-        wp_send_json_error(__('Note not found or you do not have permission to delete it.', 'quick-admin-notes-widget'));
+        wp_send_json_error(esc_html__('Note not found or you do not have permission to delete it.', 'admin-notes-widget-by-website14'));
     }
     
     /**
@@ -417,7 +417,7 @@ class QuickAdminNotesWidget {
         check_ajax_referer('qanw_nonce', 'nonce');
         
         if (!current_user_can('read')) {
-            wp_die(__('You do not have permission to perform this action.', 'quick-admin-notes-widget'));
+            wp_die(esc_html__('You do not have permission to perform this action.', 'admin-notes-widget-by-website14'));
         }
         
         $notes = $this->get_notes_data();
@@ -440,7 +440,7 @@ class QuickAdminNotesWidget {
         check_ajax_referer('qanw_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have permission to perform this action.', 'quick-admin-notes-widget'));
+            wp_die(esc_html__('You do not have permission to perform this action.', 'admin-notes-widget-by-website14'));
         }
         
         $admin_users = get_users(array(
@@ -469,7 +469,7 @@ class QuickAdminNotesWidget {
         check_ajax_referer('qanw_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have permission to perform this action.', 'quick-admin-notes-widget'));
+            wp_die(esc_html__('You do not have permission to perform this action.', 'admin-notes-widget-by-website14'));
         }
         
         $note_text = wp_kses($_POST['note_text'], array(
@@ -496,11 +496,11 @@ class QuickAdminNotesWidget {
         $recipient_ids = array_map('intval', $_POST['recipient_ids']);
         
         if (empty($note_text) || $note_text === '<br>' || $note_text === '') {
-            wp_send_json_error(__('Note text cannot be empty.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Note text cannot be empty.', 'admin-notes-widget-by-website14'));
         }
         
         if (empty($recipient_ids)) {
-            wp_send_json_error(__('Please select at least one admin user.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Please select at least one admin user.', 'admin-notes-widget-by-website14'));
         }
         
         $allowed_colors = array('yellow', 'blue', 'green', 'red');
@@ -534,10 +534,10 @@ class QuickAdminNotesWidget {
         if ($sent_count > 0) {
             $this->save_notes_data($notes);
             wp_send_json_success(array(
-                'message' => sprintf(__('Note sent to %d admin(s) successfully!', 'quick-admin-notes-widget'), $sent_count)
+                'message' => sprintf(esc_html__('Note sent to %d admin(s) successfully!', 'admin-notes-widget-by-website14'), $sent_count)
             ));
         } else {
-            wp_send_json_error(__('No valid admin users selected.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('No valid admin users selected.', 'admin-notes-widget-by-website14'));
         }
     }
     
@@ -550,11 +550,11 @@ class QuickAdminNotesWidget {
         $suggestion = sanitize_textarea_field($_POST['suggestion']);
         
         if (empty($suggestion)) {
-            wp_send_json_error(__('Suggestion cannot be empty.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Suggestion cannot be empty.', 'admin-notes-widget-by-website14'));
         }
         
         if (strlen($suggestion) > 5000) {
-            wp_send_json_error(__('Suggestion is too long. Please keep it under 5000 characters.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Suggestion is too long. Please keep it under 5000 characters.', 'admin-notes-widget-by-website14'));
         }
         
         $api_url = 'http://api.syedqutubuddin.in/suggestions_api.php';
@@ -575,15 +575,15 @@ class QuickAdminNotesWidget {
         ));
         
         if (is_wp_error($response)) {
-            wp_send_json_error(__('Failed to submit suggestion. Please try again later.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Failed to submit suggestion. Please try again later.', 'admin-notes-widget-by-website14'));
         }
         
         $status_code = wp_remote_retrieve_response_code($response);
         
         if ($status_code === 200) {
-            wp_send_json_success(__('Thank you for your suggestion! We will review it carefully.', 'quick-admin-notes-widget'));
+            wp_send_json_success(esc_html__('Thank you for your suggestion! We will review it carefully.', 'admin-notes-widget-by-website14'));
         } else {
-            wp_send_json_error(__('Failed to submit suggestion. Please try again later.', 'quick-admin-notes-widget'));
+            wp_send_json_error(esc_html__('Failed to submit suggestion. Please try again later.', 'admin-notes-widget-by-website14'));
         }
     }
     
@@ -604,7 +604,7 @@ class QuickAdminNotesWidget {
 }
 
 // Initialize the plugin
-new QuickAdminNotesWidget();
+new AdminNotesWidgetByWebsite14();
 
 // Activation hook
 register_activation_hook(__FILE__, 'qanw_activate');

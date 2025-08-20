@@ -1,0 +1,26 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#0073aa" stroke="#005a87" stroke-width="2"/>
+  
+  <!-- Sticky note -->
+  <rect x="32" y="28" width="64" height="72" rx="4" fill="#fff9c4" stroke="#fbc02d" stroke-width="2"/>
+  
+  <!-- Note content lines -->
+  <rect x="40" y="40" width="32" height="3" rx="1.5" fill="#fbc02d"/>
+  <rect x="40" y="48" width="40" height="3" rx="1.5" fill="#fbc02d"/>
+  <rect x="40" y="56" width="36" height="3" rx="1.5" fill="#fbc02d"/>
+  <rect x="40" y="64" width="44" height="3" rx="1.5" fill="#fbc02d"/>
+  <rect x="40" y="72" width="28" height="3" rx="1.5" fill="#fbc02d"/>
+  
+  <!-- Dashboard widget frame -->
+  <rect x="24" y="20" width="80" height="88" rx="6" fill="none" stroke="#fff" stroke-width="3" opacity="0.8"/>
+  
+  <!-- WordPress "W" symbol -->
+  <path d="M64 88 L56 76 L72 76 Z" fill="#fff"/>
+  <path d="M64 88 L48 68 L80 68 Z" fill="#fff"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="88" cy="36" r="4" fill="#4caf50" opacity="0.8"/>
+  <circle cx="40" cy="88" r="3" fill="#2196f3" opacity="0.8"/>
+  <circle cx="96" cy="88" r="3" fill="#f44336" opacity="0.8"/>
+</svg>

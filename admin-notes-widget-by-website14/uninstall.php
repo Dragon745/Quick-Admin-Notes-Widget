@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall Quick Admin Notes Widget
+ * Uninstall Admin Notes Widget By Website14
  * 
  * This file is executed when the plugin is deleted from WordPress.
  * It removes all plugin data from the database.
@@ -23,5 +23,5 @@ $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'qanw_%'");
 
 // Log the uninstall for debugging (optional)
 if (defined('WP_DEBUG') && WP_DEBUG) {
-    error_log('Quick Admin Notes Widget: Plugin uninstalled and all data removed.');
+    error_log('Admin Notes Widget By Website14: Plugin uninstalled and all data removed.');
 } 
