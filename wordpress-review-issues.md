@@ -2,51 +2,94 @@
 
 ## 1. Use wp_enqueue commands
 
-- Plugin is not correctly including JS and/or CSS
-- Should use built-in WordPress functions:
-  - `wp_register_script()` and `wp_enqueue_script()` for JavaScript
-  - `wp_add_inline_script()` for inline JavaScript
-  - `wp_register_style()` and `wp_enqueue_style()` for CSS
-  - `wp_add_inline_style()` for inline CSS
-- Example from plugin: `admin-notes-widget-by-website14.php:240 <script>`
+**Issue**: Plugin is not correctly including JS and/or CSS using WordPress built-in functions.
+
+**Required Actions**:
+
+- Use `wp_register_script()` and `wp_enqueue_script()` for JavaScript files
+- Use `wp_add_inline_script()` for inline JavaScript code
+- Use `wp_register_style()` and `wp_enqueue_style()` for CSS files
+- Use `wp_add_inline_style()` for inline CSS code
+
+**WordPress 6.3+ Features**:
+
+- Can pass attributes like `defer` or `async` to scripts
+- WordPress 5.7+ supports other attributes via functions and filters
+
+**Admin Page Enqueuing**:
+
+- Use `admin_enqueue_scripts` hook for admin pages
+- Use `admin_print_scripts` and `admin_print_styles` hooks
+
+**Example from plugin**: `admin-notes-widget-by-website14.php:240 <script>`
 
 ## 2. Undocumented use of a 3rd Party / external service
 
-- Plugin reaches out to external services without proper documentation
-- Must disclose in readme file:
-  - What the service is and what it is used for
-  - What data is sent and when
-  - Links to service's terms of service and privacy policy
-- Example from plugin: `admin-notes-widget-by-website14.php:560 $api_url = 'http://api.syedqutubuddin.in/suggestions_api.php'`
+**Issue**: Plugin reaches out to external services without proper documentation in readme file.
+
+**Required Documentation**:
+
+- What the service is and what it is used for
+- What data is sent and when
+- Links to service's terms of service and privacy policy
+
+**Example from plugin**:
+
+- `admin-notes-widget-by-website14.php:560` - `$api_url = 'http://api.syedqutubuddin.in/suggestions_api.php'`
+- `admin-notes-widget-by-website14.php:568` - `wp_remote_post($api_url, ...)`
+
+**External Service Found**: `http://api.syedqutubuddin.in/suggestions_api.php`
+
+**Required Readme Section**:
+
+```
+== External services ==
+
+This plugin connects to an API to [describe purpose], it's needed to [explain why].
+
+It sends [describe data] every time [describe when].
+This service is provided by [service name]: [terms of use], [privacy policy].
+```
 
 ## 3. Plugin Readme Issues
 
-- Short Description section too long (maximum 150 characters supported)
-- Too many tags (limit to 5 tags)
+**Issue**: Short Description section too long (maximum 150 characters supported).
 
-## 4. Security Issues - Improper Escaping
+**Current Status**: WARNING - readme_parser_warnings_trimmed_short_description
 
-- All output should be run through escaping functions
-- Found `_e` function usage (should use `esc_html_e`, `esc_attr_e`, etc.)
-- Found unescaped output from functions like `admin_url`
-- Total of 40 incidences of unsafe printing functions
-- Total of 8 incidences of unescaped output
+**Required Action**: Trim the short description to 150 characters or less.
 
-## 5. Plugin Name and Slug Issues
+## 4. Extraneous Plugin Assets Files
 
-- Plugin name "Quick Admin Notes Widget" is very generic
-- Conflicts with existing "Admin dashboard notes" plugins
-- Can confuse users
-- Slug "quick-admin-notes-widget" is too generic
+**Issue**: Plugin assets should not be included in the plugin itself, but committed to SVN repository after deployment.
 
-## 6. Plugin Ownership Verification
+**Files Found**:
 
-- Email domain "psychebot.pro" doesn't seem related to plugin URLs/names
-- Author URI "https://www.website14.com" could not resolve host
-- Need to clarify ownership or change plugin details
+- `icon-256x256.png`
+- `icon-128x128.png`
 
-## 7. File Naming Issues
+**Required Action**: Remove these files from the plugin package. They should be committed to SVN repository separately.
 
-- Plugin zip filename is incorrect
-- Found: "Quick-Admin-Notes-Widget.zip"
-- Expected: "quick-admin-notes-widget.zip"
+## 5. Plugin Check Report Issues
+
+**Status**: Plugin Check Report generated with the above findings.
+
+**Required Actions**:
+
+1. Fix all identified issues
+2. Test on clean WordPress installation with WP_DEBUG set to true
+3. Upload corrected version
+4. Reply to review email
+
+## 6. Review Process Notes
+
+**Review ID**: R admin-notes-widget-by-website14/website14/27Jul25/T2 14Aug25/3.6B
+
+**Next Steps**:
+
+1. Fix all issues based on feedback
+2. Test thoroughly on clean WordPress installation
+3. Upload updated version
+4. Reply to review email (be concise, no need to list changes)
+
+**Important**: Volunteers will review the entire plugin again, so ensure all issues are addressed before resubmission.
