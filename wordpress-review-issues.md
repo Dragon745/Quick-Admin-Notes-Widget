@@ -23,42 +23,6 @@
 
 **Example from plugin**: `admin-notes-widget-by-website14.php:240 <script>`
 
-## 2. Undocumented use of a 3rd Party / external service
-
-**Issue**: Plugin reaches out to external services without proper documentation in readme file.
-
-**Required Documentation**:
-
-- What the service is and what it is used for
-- What data is sent and when
-- Links to service's terms of service and privacy policy
-
-**Example from plugin**:
-
-- `admin-notes-widget-by-website14.php:560` - `$api_url = 'http://api.syedqutubuddin.in/suggestions_api.php'`
-- `admin-notes-widget-by-website14.php:568` - `wp_remote_post($api_url, ...)`
-
-**External Service Found**: `http://api.syedqutubuddin.in/suggestions_api.php`
-
-**Required Readme Section**:
-
-```
-== External services ==
-
-This plugin connects to an API to [describe purpose], it's needed to [explain why].
-
-It sends [describe data] every time [describe when].
-This service is provided by [service name]: [terms of use], [privacy policy].
-```
-
-## 3. Plugin Readme Issues
-
-**Issue**: Short Description section too long (maximum 150 characters supported).
-
-**Current Status**: WARNING - readme_parser_warnings_trimmed_short_description
-
-**Required Action**: Trim the short description to 150 characters or less.
-
 ## 4. Extraneous Plugin Assets Files
 
 **Issue**: Plugin assets should not be included in the plugin itself, but committed to SVN repository after deployment.
