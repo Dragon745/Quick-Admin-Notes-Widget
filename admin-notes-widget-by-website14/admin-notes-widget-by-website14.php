@@ -29,20 +29,18 @@ class AdminNotesWidgetByWebsite14 {
     
     public function __construct() {
         add_action('wp_dashboard_setup', array($this, 'add_dashboard_widget'));
-        add_action('admin_menu', array($this, 'add_admin_menu'));
+
         add_action('wp_ajax_qanw_save_note', array($this, 'save_note'));
         add_action('wp_ajax_qanw_delete_note', array($this, 'delete_note'));
         add_action('wp_ajax_qanw_get_notes', array($this, 'get_notes'));
         add_action('wp_ajax_qanw_send_note', array($this, 'send_note'));
         add_action('wp_ajax_qanw_get_admin_users', array($this, 'get_admin_users'));
-        add_action('wp_ajax_qanw_submit_suggestion', array($this, 'submit_suggestion'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
         add_action('wp_ajax_nopriv_qanw_save_note', array($this, 'save_note'));
         add_action('wp_ajax_nopriv_qanw_delete_note', array($this, 'delete_note'));
         add_action('wp_ajax_nopriv_qanw_get_notes', array($this, 'get_notes'));
         add_action('wp_ajax_nopriv_qanw_send_note', array($this, 'send_note'));
         add_action('wp_ajax_nopriv_qanw_get_admin_users', array($this, 'get_admin_users'));
-        add_action('wp_ajax_nopriv_qanw_submit_suggestion', array($this, 'submit_suggestion'));
     }
     
     /**
@@ -142,10 +140,7 @@ class AdminNotesWidgetByWebsite14 {
                         <span class="dashicons dashicons-heart" style="color: #e74c3c;"></span>
                         <?php esc_html_e('Buy us a coffee', 'admin-notes-widget-by-website14'); ?>
                     </a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=qanw-suggestions')); ?>" class="button button-secondary">
-                        <span class="dashicons dashicons-lightbulb"></span>
-                        <?php esc_html_e('Suggest Feature', 'admin-notes-widget-by-website14'); ?>
-                    </a>
+
                 </p>
             </div>
             
@@ -153,138 +148,9 @@ class AdminNotesWidgetByWebsite14 {
         <?php
     }
     
-    /**
-     * Add admin menu
-     */
-    public function add_admin_menu() {
-        add_submenu_page(
-            null, // No parent menu
-            __('Feature Suggestions', 'admin-notes-widget-by-website14'),
-            __('Feature Suggestions', 'admin-notes-widget-by-website14'),
-            'manage_options',
-            'qanw-suggestions',
-            array($this, 'suggestions_page')
-        );
-    }
+
     
-    /**
-     * Suggestions page content
-     */
-    public function suggestions_page() {
-        ?>
-        <div class="wrap">
-            <h1><?php esc_html_e('Feature Suggestions', 'admin-notes-widget-by-website14'); ?></h1>
-            
-            <div class="qanw-suggestions-container">
-                <div class="qanw-suggestions-intro">
-                    <p><?php esc_html_e('Help us improve the Admin Notes Widget By Website14 plugin by suggesting new features or improvements. Your feedback is valuable to us!', 'admin-notes-widget-by-website14'); ?></p>
-                </div>
-                
-                <form id="qanw-suggestion-form" method="post">
-                    <?php wp_nonce_field('qanw_suggestion_nonce', 'qanw_nonce'); ?>
-                    
-                    <table class="form-table">
-                        <tr>
-                            <th scope="row">
-                                <label for="qanw-suggestion-text"><?php esc_html_e('Your Suggestion', 'admin-notes-widget-by-website14'); ?></label>
-                            </th>
-                            <td>
-                                <textarea 
-                                    id="qanw-suggestion-text" 
-                                    name="suggestion" 
-                                    rows="8" 
-                                    cols="50" 
-                                    class="large-text"
-                                    placeholder="<?php esc_attr_e('Describe your feature suggestion here... For example: "It would be great to have a dark mode option" or "Could you add the ability to export notes?"', 'admin-notes-widget-by-website14'); ?>"
-                                    required
-                                ></textarea>
-                                <p class="description">
-                                    <?php esc_html_e('Please be as detailed as possible. Your suggestion will help us improve the plugin for everyone.', 'admin-notes-widget-by-website14'); ?>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                    
-                    <p class="submit">
-                        <button type="submit" class="button button-primary" id="qanw-submit-suggestion">
-                            <?php esc_html_e('Submit Suggestion', 'admin-notes-widget-by-website14'); ?>
-                        </button>
-                        <a href="<?php echo esc_url(admin_url('index.php')); ?>" class="button button-secondary">
-                            <?php esc_html_e('Cancel', 'admin-notes-widget-by-website14'); ?>
-                        </a>
-                    </p>
-                </form>
-                
-                <div class="qanw-suggestions-info">
-                    <h3><?php esc_html_e('What happens next?', 'admin-notes-widget-by-website14'); ?></h3>
-                    <ul>
-                        <li><?php esc_html_e('Your suggestion will be reviewed by our development team', 'admin-notes-widget-by-website14'); ?></li>
-                        <li><?php esc_html_e('We may contact you for more details if needed', 'admin-notes-widget-by-website14'); ?></li>
-                        <li><?php esc_html_e('Popular suggestions may be implemented in future updates', 'admin-notes-widget-by-website14'); ?></li>
-                        <li><?php esc_html_e('You can submit multiple suggestions', 'admin-notes-widget-by-website14'); ?></li>
-                    </ul>
-                </div>
-                
-                <div class="qanw-support-section">
-                    <hr>
-                    <p style="text-align: center; margin: 20px 0 10px 0;">
-                        <a href="https://buymeacoffee.com/contact9rg" target="_blank" class="button button-secondary">
-                            <span class="dashicons dashicons-heart" style="color: #e74c3c;"></span>
-                            <?php esc_html_e('Buy us a coffee', 'admin-notes-widget-by-website14'); ?>
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <script>
-        jQuery(document).ready(function($) {
-            $('#qanw-suggestion-form').on('submit', function(e) {
-                e.preventDefault();
-                
-                var suggestion = $('#qanw-suggestion-text').val().trim();
-                
-                if (!suggestion) {
-                    alert('<?php esc_js_e('Please enter a suggestion.', 'admin-notes-widget-by-website14'); ?>');
-                    return;
-                }
-                
-                if (suggestion.length > 5000) {
-                    alert('<?php esc_js_e('Suggestion is too long. Please keep it under 5000 characters.', 'admin-notes-widget-by-website14'); ?>');
-                    return;
-                }
-                
-                var submitBtn = $('#qanw-submit-suggestion');
-                submitBtn.prop('disabled', true).text('<?php esc_js_e('Submitting...', 'admin-notes-widget-by-website14'); ?>');
-                
-                $.ajax({
-                    url: ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'qanw_submit_suggestion',
-                        suggestion: suggestion,
-                        nonce: $('#qanw_nonce').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert('<?php esc_js_e('Thank you for your suggestion! We will review it carefully.', 'admin-notes-widget-by-website14'); ?>');
-                            window.location.href = '<?php echo esc_url(admin_url('index.php')); ?>';
-                        } else {
-                            alert(response.data || '<?php esc_js_e('An error occurred. Please try again.', 'admin-notes-widget-by-website14'); ?>');
-                        }
-                    },
-                    error: function() {
-                        alert('<?php esc_js_e('An error occurred. Please try again.', 'admin-notes-widget-by-website14'); ?>');
-                    },
-                    complete: function() {
-                        submitBtn.prop('disabled', false).text('<?php esc_js_e('Submit Suggestion', 'admin-notes-widget-by-website14'); ?>');
-                    }
-                });
-            });
-        });
-        </script>
-        <?php
-    }
+
     
     /**
      * Enqueue scripts and styles
@@ -541,51 +407,7 @@ class AdminNotesWidgetByWebsite14 {
         }
     }
     
-    /**
-     * Submit feature suggestion via AJAX
-     */
-    public function submit_suggestion() {
-        check_ajax_referer('qanw_nonce', 'nonce');
-        
-        $suggestion = sanitize_textarea_field($_POST['suggestion']);
-        
-        if (empty($suggestion)) {
-            wp_send_json_error(esc_html__('Suggestion cannot be empty.', 'admin-notes-widget-by-website14'));
-        }
-        
-        if (strlen($suggestion) > 5000) {
-            wp_send_json_error(esc_html__('Suggestion is too long. Please keep it under 5000 characters.', 'admin-notes-widget-by-website14'));
-        }
-        
-        $api_url = 'http://api.syedqutubuddin.in/suggestions_api.php';
-        
-        $data = array(
-            'url' => get_site_url(),
-            'suggestion' => $suggestion,
-            'version' => QANW_VERSION
-        );
-        
-        $response = wp_remote_post($api_url, array(
-            'headers' => array(
-                'Content-Type' => 'application/json'
-            ),
-            'body' => json_encode($data),
-            'timeout' => 30,
-            'sslverify' => false
-        ));
-        
-        if (is_wp_error($response)) {
-            wp_send_json_error(esc_html__('Failed to submit suggestion. Please try again later.', 'admin-notes-widget-by-website14'));
-        }
-        
-        $status_code = wp_remote_retrieve_response_code($response);
-        
-        if ($status_code === 200) {
-            wp_send_json_success(esc_html__('Thank you for your suggestion! We will review it carefully.', 'admin-notes-widget-by-website14'));
-        } else {
-            wp_send_json_error(esc_html__('Failed to submit suggestion. Please try again later.', 'admin-notes-widget-by-website14'));
-        }
-    }
+
     
     /**
      * Get notes data from options

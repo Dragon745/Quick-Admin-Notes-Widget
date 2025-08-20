@@ -29,7 +29,6 @@ jQuery(document).ready(function ($) {
     // Modal close buttons
     $('.qanw-modal-close, .qanw-modal-cancel').on('click', function () {
         closeSendModal();
-        closeSuggestionModal();
     });
 
     // Confirm send button
